@@ -1,8 +1,7 @@
-
 #include "AnimGraphNode_SetFingerRotation.h"
 
-UAnimGraphNode_SetFingerRotation::UAnimGraphNode_SetFingerRotation(const FObjectInitializer& Initializer)
-	: Super(Initializer)
+UAnimGraphNode_SetFingerRotation::UAnimGraphNode_SetFingerRotation(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
 {
 }
 
@@ -13,18 +12,17 @@ FLinearColor UAnimGraphNode_SetFingerRotation::GetNodeTitleColor() const
 
 FString UAnimGraphNode_SetFingerRotation::GetNodeCategory() const
 {
-	return FString("Finger Animation (ContactGlove)");
+	return FString(TEXT("Finger Animation (ContactGlove)"));
 }
 
 FText UAnimGraphNode_SetFingerRotation::GetControllerDescription() const
 {
-	return FText::FromString("Set Finger Rotation");
+	return FText::FromString(TEXT("Set Finger Rotation"));
 }
 
 FText UAnimGraphNode_SetFingerRotation::GetNodeTitle(ENodeTitleType::Type TitleType) const
 {
-	FText Description = GetControllerDescription();
-	return Description;
+	return GetControllerDescription();
 }
 
 FText UAnimGraphNode_SetFingerRotation::GetTooltipText() const
