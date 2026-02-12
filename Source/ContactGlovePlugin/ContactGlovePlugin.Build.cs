@@ -1,5 +1,3 @@
-// Some copyright should be here...
-
 using UnrealBuildTool;
 
 public class ContactGlovePlugin : ModuleRules
@@ -7,61 +5,29 @@ public class ContactGlovePlugin : ModuleRules
 	public ContactGlovePlugin(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-        bEnableExceptions = true;
-		
-		PublicIncludePaths.AddRange(
-			new string[] {
-				// ... add public include paths required here ...
-			}
-			);
-		
-		// PublicSystemIncludePaths.Add(ModuleDirectory + "/Library/header");
-		//
-		// if(Target.Platform == UnrealTargetPlatform.Win64)
-		// {
-		// 	PublicAdditionalLibraries.Add(ModuleDirectory + "/Library/lib/oscpack.lib");
-		// }
-				
-		
-		PrivateIncludePaths.AddRange(
-			new string[] {
-				// ... add other private include paths required here ...
-			}
-			);
-			
-		
+		bEnableExceptions = true;
+
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
 				"Core",
+				"CoreUObject",
+				"Engine",
 				"OSC",
 				"AnimGraphRuntime",
-				"EnhancedInput", 
+				"EnhancedInput",
 				"InputDevice",
-				// ... add other public dependencies that you statically link with here ...
+				"InputCore",
+				"ApplicationCore"
 			}
-			);
-			
-		
+		);
+
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"CoreUObject",
-				"Engine",
 				"Slate",
-				"SlateCore",
-				"OSC",
-				"EnhancedInput"
-				// ... add private dependencies that you statically link with here ...	
+				"SlateCore"
 			}
-			);
-		
-		
-		DynamicallyLoadedModuleNames.AddRange(
-			new string[]
-			{
-				// ... add any modules that your module loads dynamically here ...
-			}
-			);
+		);
 	}
 }

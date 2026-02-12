@@ -14,6 +14,7 @@
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
+	"EngineVersion": "5.6.0",
 	"Modules": [
 		{
 			"Name": "ContactGlovePlugin",
@@ -22,14 +23,8 @@
 		},
 		{
 			"Name": "ContactGloveEditor",
-			"Type": "UncookedOnly",
-			"LoadingPhase": "PreDefault",
-			"PlatformAllowList": [
-				"Win64",
-				"Android",
-				"Linux",
-				"Mac"
-			]
+			"Type": "Editor",
+			"LoadingPhase": "PreDefault"
 		}
 	],
 	"Plugins": [
