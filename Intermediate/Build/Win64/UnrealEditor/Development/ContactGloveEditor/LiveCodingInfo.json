@@ -1,0 +1,11 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.ContactGloveEditor.cpp.obj": [
+			"AnimGraphNode_SetFingerRotation.gen.cpp.obj",
+			"ContactGloveEditor.init.gen.cpp.obj",
+			"AnimGraphNode_SetFingerRotation.cpp.obj",
+			"ContactGloveEditorModule.cpp.obj"
+		]
+	}
+}
