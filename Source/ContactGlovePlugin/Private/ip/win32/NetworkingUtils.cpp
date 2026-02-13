@@ -38,6 +38,7 @@
 
 #define WIN32_LEAN_AND_MEAN
 #include <winsock2.h>   // this must come first to prevent errors with MSVC7
+#include <ws2tcpip.h>
 #include <windows.h>
 
 #include <cstring>
@@ -85,11 +86,15 @@ unsigned long GetHostByName( const char *name )
 
     unsigned long result = 0;
 
-    struct hostent *h = gethostbyname( name );
-    if( h ){
-        struct in_addr a;
-        std::memcpy( &a, h->h_addr_list[0], h->h_length );
-        result = ntohl(a.s_addr);
+    addrinfo hints = {};
+    hints.ai_family = AF_INET;
+    hints.ai_socktype = SOCK_DGRAM;
+
+    addrinfo* info = nullptr;
+    if( getaddrinfo(name, nullptr, &hints, &info) == 0 && info ){
+        const sockaddr_in* ipv4 = reinterpret_cast<const sockaddr_in*>(info->ai_addr);
+        result = ntohl(ipv4->sin_addr.s_addr);
+        freeaddrinfo(info);
     }
 
     return result;

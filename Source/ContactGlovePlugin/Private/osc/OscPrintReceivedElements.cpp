@@ -126,12 +126,14 @@ std::ostream& operator<<( std::ostream & os,
                 std::time_t t =
                         (unsigned long)( arg.AsTimeTagUnchecked() >> 32 );
 
-                const char *timeString = std::ctime( &t );
-                size_t len = std::strlen( timeString );
+                char timeString[26] = {};
+                if( ctime_s(timeString, sizeof(timeString), &t) == 0 ){
+                    size_t len = std::strlen( timeString );
 
-                // -1 to omit trailing newline from string returned by ctime()
-                if( len > 1 )
-                    os.write( timeString, len - 1 );
+                    // -1 to omit trailing newline from string returned by ctime_s()
+                    if( len > 1 )
+                        os.write( timeString, len - 1 );
+                }
             }
             break;
                 
@@ -225,13 +227,13 @@ std::ostream& operator<<( std::ostream & os, const ReceivedBundle& b )
     for( ReceivedBundle::const_iterator i = b.ElementsBegin();
             i != b.ElementsEnd(); ++i ){
         if( i->IsBundle() ){
-            ReceivedBundle b(*i);
-            os << b << "\n";
+            ReceivedBundle bundle(*i);
+            os << bundle << "\n";
         }else{
-            ReceivedMessage m(*i);
+            ReceivedMessage message(*i);
             for( int j=0; j < indent; ++j )
                 os << "  ";
-            os << m << "\n";
+            os << message << "\n";
         }
     }
 
@@ -248,11 +250,11 @@ std::ostream& operator<<( std::ostream & os, const ReceivedBundle& b )
 std::ostream& operator<<( std::ostream & os, const ReceivedPacket& p )
 {
     if( p.IsBundle() ){
-        ReceivedBundle b(p);
-        os << b << "\n";
+        ReceivedBundle bundle(p);
+        os << bundle << "\n";
     }else{
-        ReceivedMessage m(p);
-        os << m << "\n";
+        ReceivedMessage message(p);
+        os << message << "\n";
     }
 
     return os;
