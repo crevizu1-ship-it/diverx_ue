@@ -3,6 +3,8 @@
 
 #include "AnimNode_SetFingerRotation.h"
 
+#include "Animation/AnimInstanceProxy.h"
+
 #if WITH_EDITOR
 #include "BlueprintEditor.h"
 #endif
