@@ -223,8 +223,9 @@ void FContactGloveInputDevice::SetHapticFeedbackValues(int32 ControllerId, int32
 	const FHapticFeedbackValues& Values)
 {
 	EHandSides HandSide;
+	const EControllerHand ControllerHand = static_cast<EControllerHand>(Hand);
 
-	switch (static_cast<int32>(Hand))
+	switch (ControllerHand)
 	{
 	case EControllerHand::Left:
 		HandSide = EHandSides::Left;
