@@ -23,14 +23,8 @@
 		},
 		{
 			"Name": "ContactGloveEditor",
-			"Type": "UncookedOnly",
-			"LoadingPhase": "PreDefault",
-			"PlatformAllowList": [
-				"Win64",
-				"Android",
-				"Linux",
-				"Mac"
-			]
+			"Type": "Editor",
+			"LoadingPhase": "PreDefault"
 		}
 	],
 	"Plugins": [
