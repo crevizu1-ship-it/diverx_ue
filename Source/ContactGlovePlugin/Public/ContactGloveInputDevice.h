@@ -53,6 +53,7 @@ public:
 
 private:
 	// Private UProperties
+	TSharedRef<FGenericApplicationMessageHandler> MessageHandler;
 
 	FOscCommunicator OscCommunicator;
 	

@@ -6,6 +6,7 @@
 
 
 FContactGloveInputDevice::FContactGloveInputDevice(const TSharedRef<FGenericApplicationMessageHandler>& MessageHandler)
+	: MessageHandler(MessageHandler)
 {
 	OscCommunicator.BindAddress(TEXT("/DivingStation/FingerRotLeft"), [this](const auto& Message)
 	{
@@ -106,6 +107,7 @@ void FContactGloveInputDevice::SendControllerEvents()
 
 void FContactGloveInputDevice::SetMessageHandler(const TSharedRef<FGenericApplicationMessageHandler>& InMessageHandler)
 {
+	MessageHandler = InMessageHandler;
 }
 
 void FContactGloveInputDevice::AddConnectorCallback(IContactGloveCallback* Component)
@@ -202,6 +204,7 @@ void FContactGloveInputDevice::SendHaptics()
 			<< Blob << osc::EndMessage;
     
 	OscCommunicator.Send(p);
+	LastHapticsSendTime = FDateTime::Now();
 }
 
 TArray<uint8> FContactGloveInputDevice::GetBytes(const osc::ReceivedMessage& Message)
